@@ -66,15 +66,19 @@ class LeadController {
 
         try {
             $stmt = $this->pdo->prepare("
-                INSERT INTO leads (nombre, nit, ciudad, rtc, ip, fecha, hora)
-                VALUES (:nombre, :nit, :ciudad, :rtc, :ip, NOW(), NOW())
+                INSERT INTO leads (nombre, nit,nombrePunto,nombreEquipo, ciudad,promotor, rtc,capitanUusuario, ip, fecha, hora)
+                VALUES (:nombre, :nit,:nombrePunto,:nombreEquipo, :ciudad,:promotor, :rtc,:capitanUusuario, :ip, NOW(), NOW())
             ");
 
             $stmt->execute([
                 ":nombre" => $data["nombre"],
                 ":nit" => $data["nit"],
+                ":nombrePunto" => $data["nombrePunto"], 
+                ":nombreEquipo" => $data["nombreEquipo"], 
                 ":ciudad" => $data["ciudad"],
+                ":promotor" => $data["promotor"], 
                 ":rtc" => $data["rtc"],
+                ":capitanUusuario" => $data["capitanUusuario"], 
                 ":ip" => $this->obtenerIP()
             ]);
 
